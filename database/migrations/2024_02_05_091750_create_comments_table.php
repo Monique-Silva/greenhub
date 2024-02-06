@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('comment');
             $table->integer('rating');
-            $table->foreignUuid('company_id')->constrained();
-            $table->foreignUuid('blog_article_id')->constrained();
-            $table->foreignUuid('author_id')->nullable()->constrained('users');
-            $table->foreignUuid('product_id')->nullable()->constrained();
+            $table->foreignUuid('company_id')->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('blog_article_id')->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('author_id')->nullable()->constrained('users')->cascadeOnDelete();;
+            $table->foreignUuid('product_id')->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }

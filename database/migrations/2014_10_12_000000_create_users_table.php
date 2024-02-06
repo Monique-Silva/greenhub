@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('role');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignUuid('company_id')->nullable()->constrained();
-            $table->foreignUuid('image_id')->nullable()->constrained();
+            $table->foreignUuid('company_id')->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('image_id')->nullable()->constrained()->cascadeOnDelete();;
         });
     }
 

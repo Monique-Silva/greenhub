@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('labels_has_products', function (Blueprint $table) {
-            $table->foreignUuid('product_id')->nullable()->constrained();
-            $table->foreignUuid('label_id')->nullable()->constrained();
+            $table->foreignUuid('product_id')->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('label_id')->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }

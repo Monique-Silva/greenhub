@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('origin');
             $table->string('measuring_unit');
             $table->integer('measure');
-            $table->foreignUuid('discount_id')->nullable()->constrained();
-            $table->foreignUuid('brand_id')->nullable()->constrained();
+            $table->foreignUuid('discount_id')->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('brand_id')->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }

@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('blog_registered_adresses', function (Blueprint $table) {
-            $table->foreignUuid('user_id')->nullable()->constrained();
-            $table->foreignUuid('adress_id')->nullable()->constrained();
+            $table->foreignUuid('user_id')->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('adress_id')->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }

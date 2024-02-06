@@ -15,8 +15,8 @@ return new class extends Migration
             $table->integer('quantity')->nullable();
             $table->float('unit_price')->nullable();
             $table->float('unit_price_vat')->nullable();
-            $table->foreignUuid('order_id')->nullable()->constrained();
-            $table->foreignUuid('product_id')->nullable()->constrained();
+            $table->foreignUuid('order_id')->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('product_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
