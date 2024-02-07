@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Models\Category;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/product/read/{id}', [ProductController::class, 'show']);
-Route::post('product/create', [ProductController::class, 'store']);
-Route::put('product/update/{id}', [ProductController::class, 'update']);
-Route::delete('product/delete/{id}', [ProductController::class, 'destroy']);
+Route::apiResource('/users', UserController::class);
+Route::apiResource('/products', ProductController::class);
+Route::apiResource('/categories', CategoryController::class);
+Route::apiResource('/orders', OrderController::class);
+Route::apiResource('/products', ProductController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
