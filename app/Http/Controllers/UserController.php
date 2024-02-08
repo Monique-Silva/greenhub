@@ -60,7 +60,6 @@ class UserController extends Controller
         $user->password = $request->input('password');
         $user->email_verified_at->$request->input('email_verified_at');
         $user->rememberToken->$request->input('rememberToken');
-
         $user->role = $request->input('role');
         if ($user->save()) {
 
@@ -79,7 +78,7 @@ class UserController extends Controller
     /**
      * It allows the user to update a profile.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
         $user = User::find($id);
 

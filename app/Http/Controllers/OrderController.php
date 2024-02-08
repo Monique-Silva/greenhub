@@ -79,7 +79,7 @@ class OrderController extends Controller
     /**
      * It allows the user to update the given order.
      */
-    public function update(Request $request, string $id)
+    public function update(OrderRequest $request, string $id)
     {
         $order = Order::find($id);
 

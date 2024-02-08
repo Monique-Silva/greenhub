@@ -14,20 +14,24 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
 
-Route::apiResource('/users', UserController::class);
-Route::apiResource('/products', ProductController::class);
-Route::apiResource('/categories', CategoryController::class);
-Route::apiResource('/orders', OrderController::class);
-Route::apiResource('/products', ProductController::class);
+Route::post('/users/create', [UserController::class, 'store']); //profile creation - the user cannot be authentified before its creation, that's why it's separated from the middleware route of sanctum's authentification
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/products', ProductController::class);
+    Route::apiResource('/categories', CategoryController::class);
+    Route::apiResource('/orders', OrderController::class);
+    Route::apiResource('/products', ProductController::class);
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users{id}', [UserController::class, 'show']);
+    Route::put('users/{id}', [UserController::class, 'update']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
 });
-
-Route::post('/login', [AuthController::class, 'auth']);
-Route::post('/logout', [AuthController::class, 'logout']);

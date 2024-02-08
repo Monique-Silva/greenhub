@@ -70,7 +70,7 @@ class CategoryController extends Controller
     /**
      * It allows the user to update the given category.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
         $category = Category::find($id);
 

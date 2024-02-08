@@ -79,7 +79,7 @@ class ProductController extends Controller
     /**
      * It allows the user to update the given product.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, string $id)
     {
         $product = Product::find($id);
 
