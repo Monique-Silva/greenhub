@@ -32,6 +32,6 @@ class Order extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'orders_has_products');
+        return $this->belongsToMany(Product::class, 'orders_has_products')->withPivot('quantity', 'unit_price', 'unit_price_vat');
     }
 }

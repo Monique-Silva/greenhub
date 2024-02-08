@@ -13,11 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
-        return response()->json([
-            'Products: ' => $products,
-        ]);
+        return Product::all();
     }
 
     /**
@@ -26,22 +22,7 @@ class ProductController extends Controller
 
     public function show(string $id)
     {
-        $product = Product::find($id);
-
-        if ($product) {
-
-            return response()->json([
-                'Message: ' => 'Product found.',
-                'Product: ' => $product,
-            ]);
-        } else {
-
-            return response([
-
-                'Message: ' => 'The product cannot be found.',
-
-            ]);
-        }
+        return Product::find($id);
     }
 
     /**
@@ -61,19 +42,8 @@ class ProductController extends Controller
         $product->origin = $request->input('origin');
         $product->measuring_unit = $request->input('measuring_unit');
         $product->measure = $request->input('measure');
-
-        if ($product->save()) {
-
-            return response()->json([
-                'Message: ' => 'A new product was created.',
-                'Product created: ' => $product
-            ]);
-        } else {
-
-            return response([
-                'Message: ' => 'The new product could not be created.',
-            ]);
-        }
+        $product->save();
+        return $product;
     }
 
     /**
@@ -97,31 +67,7 @@ class ProductController extends Controller
                 $product->measuring_unit = $request->input('measuring_unit'),
                 $product->measure = $request->input('measure')
             ]);
-            $product->save();
-
-            if ($product->save()) {
-
-                return response()->json([
-
-                    'Message: ' => 'Product updated with success.',
-                    'Product: ' => $product
-
-                ]);
-            } else {
-
-                return response([
-
-                    'Message: ' => 'We could not update the product.',
-
-                ]);
-            }
-        } else {
-
-            return response([
-
-                'Message: ' => 'We could not find the product.',
-
-            ]);
+            return $product;
         }
     }
     /**

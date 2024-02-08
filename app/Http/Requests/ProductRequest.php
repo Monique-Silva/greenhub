@@ -22,30 +22,30 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'price' => ['required'],
-            'vat_rate' => ['required'],
-            'stock' => ['required'],
-            'description' => ['required'],
-            'environmental_impact' => ['required'],
-            'origin' => ['required'],
-            'measuring_unit' => ['required'],
-            'measure' => ['required'],
+            'name' => ['required', 'string', 'max:20'],
+            'price' => ['required', 'float'],
+            'vat_rate' => ['required', 'float'],
+            'stock' => ['required', 'integer'],
+            'description' => ['required', 'string', 'max:200'],
+            'environmental_impact' => ['required', 'integer'],
+            'origin' => ['required', 'string', 'max:15'],
+            'measuring_unit' => ['required', 'string', 'max:5'],
+            'measure' => ['required', 'float'],
         ];
     }
     public function messages()
-{
-    return [
-        'name.required' => 'The name field is required.',
-        'price.required' => 'The email field is required.',
-        'vat_rate.required' => 'The email field is required.',
-        'stock.required' => 'The stock field is required.',
-        'description.required' => 'Please, write a description.',
-        'environmental_impact.required' => 'The environmental impact must be filled.',
-        'origin.required' => 'The origin field is required.',
-        'measuring_unit.required' => 'The measuring unit field is required.',
-        'measure.required' => 'The measure field is required.',
+    {
+        return [
+            'name.required' => 'The name field is required.',
+            'price.required' => 'The email field is required.',
+            'vat_rate.required' => 'The email field is required.',
+            'stock.required' => 'The stock field is required.',
+            'description.required' => 'Please, write a description.',
+            'environmental_impact.required' => 'The environmental impact must be filled.',
+            'origin.required' => 'The origin field is required.',
+            'measuring_unit.required' => 'The measuring unit field is required.',
+            'measure.required' => 'The measure field is required.',
 
         ];
-}
+    }
 }

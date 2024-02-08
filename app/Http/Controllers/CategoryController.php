@@ -13,11 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-
-        return response()->json([
-            'Categories: ' => $categories,
-        ]);
+        return Category::all();
     }
 
     /**
@@ -26,22 +22,7 @@ class CategoryController extends Controller
 
     public function show(string $id)
     {
-        $category = Category::find($id);
-
-        if ($category) {
-
-            return response()->json([
-                'Message: ' => 'Category found.',
-                'Category: ' => $category,
-            ]);
-        } else {
-
-            return response([
-
-                'Message: ' => 'The category cannot be found.',
-
-            ]);
-        }
+        return Category::find($id);
     }
 
     /**
@@ -53,18 +34,9 @@ class CategoryController extends Controller
         // Validation passed, create and store the category
         $category = new Category();
         $category->name = $request->input('name');
-        if ($category->save()) {
+        $category->save();
 
-            return response()->json([
-                'Message: ' => 'A new category was created.',
-                'Category created: ' => $category
-            ]);
-        } else {
-
-            return response([
-                'Message: ' => 'The new category could not be created.',
-            ]);
-        }
+        return $category;
     }
 
     /**
@@ -74,38 +46,13 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        if ($category) {
+        // Validation passed, create and store the category
+        $category->update([
+            $category->name = $request->input('name'),
+        ]);
+        $category->save();
 
-            // Validation passed, create and store the category
-            $category->update([
-                $category->name = $request->input('name'),
-            ]);
-            $category->save();
-
-            if ($category->save()) {
-
-                return response()->json([
-
-                    'Message: ' => 'Category updated with success.',
-                    'Category: ' => $category
-
-                ]);
-            } else {
-
-                return response([
-
-                    'Message: ' => 'We could not update the category.',
-
-                ]);
-            }
-        } else {
-
-            return response([
-
-                'Message: ' => 'We could not find the category.',
-
-            ]);
-        }
+        return $category;
     }
     /**
      *It allows the user to delete the category
