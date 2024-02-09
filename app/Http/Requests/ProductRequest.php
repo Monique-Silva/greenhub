@@ -23,14 +23,14 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:20'],
-            'price' => ['required', 'float'],
-            'vat_rate' => ['required', 'float'],
+            'price' => ['required', 'numeric'],
+            'vat_rate' => ['required', 'numeric'],
             'stock' => ['required', 'integer'],
             'description' => ['required', 'string', 'max:200'],
             'environmental_impact' => ['required', 'integer'],
             'origin' => ['required', 'string', 'max:15'],
             'measuring_unit' => ['required', 'string', 'max:5'],
-            'measure' => ['required', 'float'],
+            'measure' => ['required', 'numeric'],
         ];
     }
     public function messages()

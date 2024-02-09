@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
     /**
      * Show all website products.
      */
@@ -31,6 +33,8 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
+        $this->authorize('create');
+
         // Validation passed, create and store the product
         $product = new Product();
         $product->name = $request->input('name');
@@ -51,10 +55,11 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, string $id)
     {
+
         $product = Product::find($id);
+        $this->authorize('update', [$product, $request->category]);
 
         if ($product) {
-
             // Validation passed, create and store the product
             $product->update([
                 $product->name = $request->input('name'),

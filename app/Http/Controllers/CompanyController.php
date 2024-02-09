@@ -33,6 +33,9 @@ class CompanyController extends Controller
     {
         // Validation passed, create and store the company
         $company = new Company();
+        $company->name = $request->input('name');
+        $company->description = $request->input('description');
+        $company->website = $request->input('website');
         $company->save();
         return $company;
     }
