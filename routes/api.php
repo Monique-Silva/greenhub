@@ -25,12 +25,17 @@ Route::post('/users/create', [UserController::class, 'store']); //profile creati
 //    return $request->user();
 //});
 
+//apiResource replaces the get, put and delete routes for all items and their ids - there's the classic routes for user to exemplify what it replaces.
+Route::apiResource('/products', ProductController::class);
+Route::apiResource('/categories', CategoryController::class);
+Route::apiResource('/orders', OrderController::class);
+Route::apiResource('/companies', CompanyController::class);
+
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/products', ProductController::class);
-    Route::apiResource('/categories', CategoryController::class);
-    Route::apiResource('/orders', OrderController::class);
-    Route::apiResource('/products', ProductController::class);
-    Route::apiResource('/companies', CompanyController::class);
+    //Route::apiResource('/products', ProductController::class);
+    //Route::apiResource('/categories', CategoryController::class);
+    //Route::apiResource('/orders', OrderController::class);
+    //Route::apiResource('/companies', CompanyController::class);
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users{id}', [UserController::class, 'show']);
     Route::put('users/{id}', [UserController::class, 'update']);
