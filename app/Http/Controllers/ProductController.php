@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ProductController extends Controller
 {
@@ -100,4 +99,14 @@ class ProductController extends Controller
             ]);
         }
     }
+
+    public function showProductsByCategory($categoryName)
+    {
+        $products = Product::whereHas('categories', function (Builder $query) use ($categoryName) {
+            $query->where('name', $categoryName);
+        })->get();
+        return $products;
+    }
+
+    //public function showShoppingCart ()
 }

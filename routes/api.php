@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,8 @@ Route::apiResource('/products', ProductController::class);
 Route::apiResource('/categories', CategoryController::class);
 Route::apiResource('/orders', OrderController::class);
 Route::apiResource('/companies', CompanyController::class);
+Route::get('/products/categories/{categoryName}', [ProductController::class, 'showProductsByCategory']);
+Route::get('/cart', [ProductController::class, 'showShoppingCart']);
 
 Route::middleware('auth:sanctum')->group(function () {
     //Route::apiResource('/products', ProductController::class);
@@ -38,6 +41,6 @@ Route::middleware('auth:sanctum')->group(function () {
     //Route::apiResource('/companies', CompanyController::class);
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users{id}', [UserController::class, 'show']);
-    Route::put('users/{id}', [UserController::class, 'update']);
-    Route::delete('users/{id}', [UserController::class, 'destroy']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
