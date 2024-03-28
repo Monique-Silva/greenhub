@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 
+
 class UserController extends Controller
 {
     /**
@@ -59,6 +60,7 @@ class UserController extends Controller
             $user->password = $request->input('password'),
             $user->role = $request->input('role')
         ]);
+
         return $user;
     }
     /**
@@ -86,4 +88,8 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function getCurrentUser ()
+    //axios.get do /user
+    //
 }

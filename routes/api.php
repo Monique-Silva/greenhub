@@ -35,9 +35,10 @@ Route::get('/products/categories/{categoryName}', [ProductController::class, 'sh
 Route::get('/cart', [ProductController::class, 'showShoppingCart']);
 
 Route::get('/users', [UserController::class, 'index']);
-Route::get('/users{id}', [UserController::class, 'show']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
 
 Route::middleware('auth:sanctum')->group(function () {
 });

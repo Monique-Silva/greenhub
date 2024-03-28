@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['*', 'sanctum/csrf-cookie'],
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL')],
+    'allowed_origins' => [env('FRONTEND_URL')], // it authorizes preflight requests from this website (access-control-allow-*) so it can send the GET /sanctum/csrf-cookie to get the cookie/token and pass the CORS layer.
 
     'allowed_origins_patterns' => [],
 
