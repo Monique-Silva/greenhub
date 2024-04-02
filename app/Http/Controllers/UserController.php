@@ -89,7 +89,10 @@ class UserController extends Controller
         }
     }
 
-    public function getCurrentUser ()
-    //axios.get do /user
-    //
+    public function showCurrentUser(UserRequest $request)
+    {
+
+        $user = auth()->user();
+        return $user;
+    }
 }
