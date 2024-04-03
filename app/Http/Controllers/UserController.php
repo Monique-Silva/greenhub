@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 
 class UserController extends Controller
@@ -20,9 +21,9 @@ class UserController extends Controller
      * Show a specific user.
      */
 
-    public function show(string $id)
+    public function show(string $email)
     {
-        return User::find($id);
+        return User::find($email);
     }
 
     /**
@@ -89,10 +90,9 @@ class UserController extends Controller
         }
     }
 
-    public function showCurrentUser(UserRequest $request)
+    public function showCurrentUser(Request $request)
     {
-
-        $user = auth()->user();
-        return $user;
+        return auth()->user();
+        //TODO essayer try catch
     }
 }

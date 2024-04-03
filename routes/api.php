@@ -6,8 +6,9 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Models\Product;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +23,13 @@ use Illuminate\Support\Facades\Route;
 
 //Route::post('/users/create', [UserController::class, 'store']); //profile creation - the user cannot be authentified before its creation, that's why it's separated from the middleware route of sanctum's authentification
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 
 //apiResource replaces the get, put and delete routes for all items and their ids - there's the classic routes for user to exemplify what it replaces.
 Route::apiResource('/products', ProductController::class);
 Route::apiResource('/categories', CategoryController::class);
 Route::apiResource('/orders', OrderController::class);
 Route::apiResource('/companies', CompanyController::class);
-Route::get('/products/categories/{categoryName}', [ProductController::class, 'showProductsByCategory']);
+//Route::get('/products/categories/{categoryName}', [ProductController::class, 'showProductsByCategory']);
 Route::get('/cart', [ProductController::class, 'showShoppingCart']);
 
 Route::get('/users', [UserController::class, 'index']);
@@ -42,4 +40,5 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'showCurrentUser']);
+    Route::get('/products/categories/{categoryName}', [ProductController::class, 'showProductsByCategory']);
 });
