@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 
@@ -92,7 +93,14 @@ class UserController extends Controller
 
     public function showCurrentUser(Request $request)
     {
-        return auth()->user();
-        //TODO essayer try catch
+        try {
+            return auth()->user();
+        } catch (Exception $e) {
+            return response([
+
+                'Message: ' => 'You need to login.',
+
+            ]);
+        }
     }
 }
