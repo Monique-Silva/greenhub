@@ -27,6 +27,8 @@ WORKDIR /app
 # Copy the rest of the application
 COPY . .
 
+# RUN rm -rf ./storage
+
 # On copie le fichier .env.example pour le renommer en .env
 # Vous pouvez modifier le .env.example pour indiquer la configuration de votre site pour la production
 RUN cp -n .env.example .env
@@ -35,4 +37,4 @@ RUN cp -n .env.example .env
 EXPOSE 80
 
 # Copy existing application directory permissions
-RUN chown -R www-data:www-data .
+RUN chown -R application:application .
