@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+
 class OrderController extends Controller
 {
     /**
@@ -49,7 +50,7 @@ class OrderController extends Controller
             $order->vat = $request->input('vat'),
             $order->shipping_fee = $request->input('shipping_fee'),
             $order->total_price = $request->input('total_price'),
-            $order->adress_id = $request->input('adress_id'),
+            $order->address_id = $request->input('address_id'),
         ]);
 
         return $order;

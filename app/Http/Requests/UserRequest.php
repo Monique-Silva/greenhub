@@ -36,7 +36,6 @@ class UserRequest extends FormRequest
                     ->numbers()
                     ->uncompromised(),
             ],
-            'role' => ['required', 'string', 'max:10'],
         ];
     }
 }

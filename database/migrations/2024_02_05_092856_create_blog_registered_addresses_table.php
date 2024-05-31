@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog_registered_adresses', function (Blueprint $table) {
+        Schema::create('blog_registered_addresses', function (Blueprint $table) {
             $table->foreignUuid('user_id')->nullable()->constrained()->cascadeOnDelete();;
-            $table->foreignUuid('adress_id')->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('address_id')->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_registered_adresses');
+        Schema::dropIfExists('blog_registered_addresses');
     }
 };

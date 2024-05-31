@@ -22,7 +22,7 @@ class Order extends Model
         'shipping_fee',
         'total_price',
         'user_id',
-        'adress_id'
+        'address_id'
     ];
 
     public function users(): BelongsTo

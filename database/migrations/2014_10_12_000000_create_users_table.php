@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role');
+            $table->enum('role', array('client', 'company', 'administrator'))->default('client');
             $table->rememberToken();
             $table->timestamps();
             $table->foreignUuid('company_id')->nullable()->constrained()->cascadeOnDelete();;

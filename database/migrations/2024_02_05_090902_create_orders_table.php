@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('shipping_fee');
             $table->float('total_price');
             $table->foreignUuid('user_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignUuid('adress_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignUuid('address_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

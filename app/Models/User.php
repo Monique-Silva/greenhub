@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Order;
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function companies(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function addresses(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
     }
 }
