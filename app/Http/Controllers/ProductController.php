@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ProductController extends Controller
@@ -102,11 +103,19 @@ class ProductController extends Controller
 
     public function showProductsByCategory($categoryName)
     {
+        // Find the category by name
+        $category = Category::where('name', $categoryName)->first();
+        // Check if the category exists
+        if (!$category) {
+            return response()->json(['error' => 'Category not found'], 404);
+        }
+
+        // Retrieve products that belong to the category
         $products = Product::whereHas('categories', function (Builder $query) use ($categoryName) {
             $query->where('name', $categoryName);
         })->get();
-        return $products;
-    }
 
-    //public function showShoppingCart ()
+        // Return the products as a JSON response
+        return response()->json($products);
+    }
 }
