@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('postal_code');
             $table->string('city');
             $table->string('country');
-            $table->foreignUuid('user_id')->nullable()->constrained()->cascadeOnDelete();;
             $table->timestamps();
         });
     }

@@ -7,8 +7,10 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Requests\UserRequest;
+use App\Models\Address;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,7 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'showCurrentUser']);
+    Route::get('/user/address/{id}', [AddressController::class, 'showCurrentUsersAddress']);
 });

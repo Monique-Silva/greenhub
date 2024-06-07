@@ -11,12 +11,12 @@ class ProductsHasCategories extends Model
 {
     use HasFactory, HasUuids;
 
-protected $fillable = [
-    'category_id',
-    'product_id',
-];
+    protected $fillable = [
+        'category_id',
+        'product_id',
+    ];
 
-public function products(): BelongsToMany
+    public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'products_has_categories');
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('website');
             $table->timestamps();
+            $table->foreignUuid('address_id')->nullable()->constrained()->cascadeOnDelete();;
         });
     }
 

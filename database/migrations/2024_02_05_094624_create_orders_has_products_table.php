@@ -19,8 +19,13 @@ return new class extends Migration
             $table->foreignUuid('product_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
-    }
 
+    /* Add an id to the table */
+
+    Schema::table('orders_has_products', function (Blueprint $table) {
+        $table->id();
+    });
+}
     /**
      * Reverse the migrations.
      */

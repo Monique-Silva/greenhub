@@ -27,7 +27,6 @@ class AddressRequest extends FormRequest
             'postal_code' => ['required', 'integer'],
             'city' => ['required', 'string', 'max:15'],
             'country' => ['required', 'string', 'max:20'],
-            'user_id' => ['required', 'exists:App\Models\User,id'],
-        ];
+            ];
     }
 }

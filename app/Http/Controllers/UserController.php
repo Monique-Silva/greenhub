@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Address;
 use App\Models\User;
+use App\Models\Company;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log as FacadesLog;
 
 
 class UserController extends Controller
@@ -22,17 +24,19 @@ class UserController extends Controller
      * Show a specific user.
      */
 
-    public function show(string $email)
+    public function show(string $id)
     {
-        return User::find($email);
+        return User::with('address')->find($id);
     }
 
     /**
      * It allows user to create a profile.
      */
 
-    public function store(UserRequest $request)
+    public function store(UserRequest $request, string $id)
     {
+        $address = Address::find($id);
+
         // Validation passed, create and store the user
         $user = new User();
         $user->user_name = $request->input('user_name');
@@ -40,6 +44,8 @@ class UserController extends Controller
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
+        $user->address()->associate($address);
+        //$user->company()->associate($company);
         $user->save();
 
         return $user;
@@ -90,9 +96,10 @@ class UserController extends Controller
         }
     }
 
-    public function showCurrentUser(Request $request)
+    public function showCurrentUser()
     {
         try {
+            FacadesLog::debug('showCurrentUSer');
             return auth()->user();
         } catch (Exception $e) {
             return response([

@@ -31,28 +31,29 @@ class RegisteredUserController extends Controller
         ]);
 
         try {
+
+            $address = Address::create([
+                'number' => $request->number,
+                'road' => $request->road,
+                'postal_code' => $request->postal_code,
+                'city' => $request->city,
+                'country' => $request->country,
+            ]);
+
             $user = User::create([
+
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'user_name' => $request->user_name,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
+                'address_id' => $address->id,
+                'company_id' => $request->company_id,
             ]);
-
-            $address = Address::create([
-                'user_id' => $user->id,
-                'number' => $request->input('address.number'),
-                'road' => $request->input('address.road'),
-                'postal_code' => $request->input('address.postal_code'),
-                'city' => $request->input('address.city'),
-                'country' => $request->input('address.country'),
-            ]);
-
-            event(new Registered($user));
 
             Auth::login($user);
 
-            return response()->json(['user' => $user, 'address' => $address], 201);
+            return response()->json($user, 201);
         } catch (\Exception $e) {
             \Log::error('Erreur lors de la création de l\'utilisateur : ' . $e->getMessage());
             return response()->json(['error' => 'Internal Server Error'], 500);

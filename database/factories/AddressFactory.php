@@ -23,7 +23,6 @@ class AddressFactory extends Factory
             'postal_code' => fake()->randomNumber(5, false),
             'city' => fake()->city(),
             'country' => "France",
-            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }

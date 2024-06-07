@@ -13,7 +13,6 @@ class Address extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'user_id',
         'number',
         'road',
         'postal_code',

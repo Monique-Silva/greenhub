@@ -24,6 +24,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignUuid('company_id')->nullable()->constrained()->cascadeOnDelete();;
             $table->foreignUuid('image_id')->nullable()->constrained()->cascadeOnDelete();;
+            $table->foreignUuid('address_id')->nullable()->constrained()->cascadeOnDelete();;
         });
     }
 
